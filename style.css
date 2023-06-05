@@ -1,0 +1,102 @@
+/* Import Google font - Poppins */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+body{
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /*background-color: #161b33;*/
+  background: hsla(190, 79%, 59%, 1);
+  background: linear-gradient(135deg, hsla(190, 79%, 59%, 1) 0%, hsla(226, 50%, 65%, 1) 100%);
+  background: -moz-linear-gradient(135deg, hsla(190, 79%, 59%, 1) 0%, hsla(226, 50%, 65%, 1) 100%);
+  background: -webkit-linear-gradient(135deg, hsla(190, 79%, 59%, 1) 0%, hsla(226, 50%, 65%, 1) 100%);
+  filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#45CDE9", endColorstr="#7A8FD3", GradientType=1 );
+}
+.header {
+  margin-top: 20px;
+  padding: 0;
+  color: #fff;
+  text-align: center;
+}
+.container{
+  background-color: #000000;
+  width: 500px;
+  height: 500px;
+  border-radius: 15px;
+  float: both;
+}
+.justify {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  float: both;
+}
+input[type="submit"] {
+  background-color: transparent;
+  color: #FFFFFF;
+  border-color: #FFFFFF;
+  padding: 10px 20px;
+  outline: none;
+  border-radius: 5px;
+  font-weight: bold;
+  font-size: 12pt;
+  margin-top: 20px;
+  cursor: pointer;
+  transition: 0.3s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+input[type="submit"]:hover {
+  color: #00CCFF;
+  border-color: #00CCFF;
+  background-color: transparent;
+}
+input[type="submit"]:active {
+  color: #FFFFFF;
+  border-color: #00CCFF;
+  background-color: #00CCFF;
+}
+
+.input-field{
+  left: 15%;
+  position: relative;
+  float: both;
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+.input-field input{
+  width: 350px;
+  height: 60px;
+  border-radius: 6px;
+  font-size: 18px;
+  padding: 0 15px;
+  border: 2px solid #fff;
+  background: transparent;
+  color: #fff;
+  outline: none;
+}
+.input-field label{
+  position: absolute;
+  top: 50%;
+  left: 15px;
+  transform: translateY(-50%);
+  color: #fff;
+  font-size: 19px;
+  pointer-events: none;
+  transition: 0.3s;
+}
+input:focus{
+  border: 2px solid #00CCFF;
+}
+input:focus ~ label,
+input:valid ~ label{
+  top: 0;
+  left: 15px;
+  font-size: 16px;
+  padding: 0 2px;
+  background: #000000;
+}

@@ -2,10 +2,9 @@ from flask import Flask, render_template, request
 
 app = Flask(__name__)
 
-@app.route("/login")
+@app.route("/login", methods=['POST', 'GET'])
 def root():
-    return render_template("login.html")
-
-@app.route("/adduser", methods=['POST'])
-def add_user():
-    data = request.fo
+    if request.method = "GET":
+        return render_template("login.html")
+    else:
+        return request.form

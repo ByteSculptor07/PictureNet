@@ -7,4 +7,5 @@ def root():
     if request.method == "GET":
         return render_template("login.html")
     else:
-        return request.form
+        user = request.form["user"]
+        return "Hello, " + user

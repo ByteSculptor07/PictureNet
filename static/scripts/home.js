@@ -5,10 +5,14 @@ function heart_click(element) {
 	var counter_num = counter.innerHTML;
 	if (heart.className == "ph-bold ph-heart-straight heart") {
 	    heart.className = "ph-fill ph-heart-straight heart";
-	    counter.innerHTML = Number(counter_num) + 1;
+	    if (!Number.isNaN(counter_num)) {
+	        counter.innerHTML = Number(counter_num) + 1;
+	    }
 	} else {
 		heart.className = "ph-bold ph-heart-straight heart";
-		counter.innerHTML = Number(counter_num) - 1;
+		if (!Number.isNaN(counter_num)) {
+		    counter.innerHTML = Number(counter_num) - 1;
+		}
 	};
 };
 window.onload = function() {

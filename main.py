@@ -1,6 +1,17 @@
 from flask import Flask, render_template, request
+from deta import Deta
 
 app = Flask(__name__)
+deta = Deta()
+
+identity = deta.Base("identity")
+
+@app.route("/"):
+def index():
+    if not identity.get("u"):
+        return redirect(url_for("login"))
+    else:
+        return redirect(url_for("home"))
 
 @app.route("/login", methods=['POST', 'GET'])
 def login():

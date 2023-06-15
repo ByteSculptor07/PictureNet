@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, url_for, redirect
 from deta import Deta
 
 app = Flask(__name__)
@@ -6,7 +6,7 @@ deta = Deta()
 
 identity = deta.Base("identity")
 
-@app.route("/"):
+@app.route("/")
 def index():
     if not identity.get("u"):
         return redirect(url_for("login"))

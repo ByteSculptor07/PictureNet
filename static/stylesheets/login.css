@@ -29,13 +29,9 @@ body{
   text-align: center;
 }
 .container{
-  width: 95vw;
-  height: 95vh;
+  width: 500px;
+  height: 500px;
   border-radius: 15px;
-  @media screen and (orientation:landscape) {
-    width: 40vw;
-    height: 95vh;
-  }
   background-color: #000000;
 }
 .justify {

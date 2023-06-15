@@ -24,7 +24,7 @@ def login():
         user = request.form["user"]
         id = "".join(random.choices(string.ascii_uppercase + string.ascii_lowercase + string.digits, k=20))
         identity.put({"user": user, "id": id, "tags": []}, "u")
-        return "Hello, " + user
+        return redirct(url_for("index"))
     
 @app.route("/home")
 def home():

@@ -17,7 +17,10 @@ body{
   background: -moz-linear-gradient(135deg, hsla(190, 79%, 59%, 1) 0%, hsla(226, 50%, 65%, 1) 100%);
   background: -webkit-linear-gradient(135deg, hsla(190, 79%, 59%, 1) 0%, hsla(226, 50%, 65%, 1) 100%);
   filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#45CDE9", endColorstr="#7A8FD3", GradientType=1 );
+  height: 100%;
+  margin: 0;
   background-repeat: no-repeat;
+  background-attachment: fixed;
 }
 .header {
   margin-top: 20px;

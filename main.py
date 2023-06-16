@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, url_for, redirect
+from flask import Flask, render_template, request, url_for, redirect, flash
 from deta import Deta
 import random, string
 
@@ -22,9 +22,12 @@ def login():
         return redirect(url_for("index"))
     else:
         user = request.form["user"]
-        id = "".join(random.choices(string.ascii_uppercase + string.ascii_lowercase + string.digits, k=20))
-        identity.put({"user": user, "id": id, "tags": []}, "u")
-        return redirect(url_for("index"))
+        if len(user) >= 3 and len(user) <= 10:
+            id = "".join(random.choices(string.ascii_uppercase + string.ascii_lowercase + string.digits, k=20))
+            identity.put({"user": user, "id": id, "tags": []}, "u")
+            return redirect(url_for("index"))
+        else:
+            flash("Username too long or short")
     
 @app.route("/home")
 def home():

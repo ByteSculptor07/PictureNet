@@ -17,7 +17,7 @@ def index():
 @app.route("/login", methods=['POST', 'GET'])
 def login():
     if request.method == "GET" and not identity.get("u"):
-        return render_template("login.html")
+        return render_template("login.html", error=None)
     elif identity.get("u"):
         return redirect(url_for("index"))
     else:
@@ -27,7 +27,7 @@ def login():
             identity.put({"user": user, "id": id, "tags": []}, "u")
             return redirect(url_for("index"))
         else:
-            flash("Username too long or short")
+            return render_template("login.html", error="2")
     
 @app.route("/home")
 def home():

@@ -27,7 +27,7 @@ def login():
             identity.put({"user": user, "id": id, "tags": []}, "u")
             return redirect(url_for("index"))
         else:
-            return render_template("login.html", error="This is an error!!!")
+            return render_template("login.html", error="Your username has to be<br>between 3 and 10 characters long.")
     
 @app.route("/home")
 def home():

@@ -14,7 +14,7 @@
       <h1 class="header">Login</h1>
       <br>
       {% if error %}
-      <h4 class="error">{{ error }}</h4>
+      <h4 class="error">{{ error|safe }}</h4>
       {% else %}
       <h4 class="header">Please choose a username</h4>
       {% endif %}

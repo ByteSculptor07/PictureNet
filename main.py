@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, url_for, redirect, flash
 from deta import Deta
-import random, string
+import random, string, requests
+import hashlib
 
 app = Flask(__name__)
 deta = Deta()
@@ -28,8 +29,15 @@ def login():
             return render_template("login.html", error="Your username can only<br>contain alphanumeric characters.")
         else:
             id = "".join(random.choices(string.ascii_uppercase + string.ascii_lowercase + string.digits, k=20))
-            identity.put({"user": user, "id": id, "tags": []}, "u")
-            return redirect(url_for("index"))
+            obj = {"user": user, "id": hashlib.sha256(id.encode("utf_8")).hexdigest(), "url": request.url_root}
+            r = requests.post(api_url + "adduser", json=obj)
+            if "user existing" in r.text:
+                return render_template("login.html", error="The username is already existing.")
+            elif not "success" in r.text:
+                return render_template("login.html", error="An unknown error occurrented:<br>" + r.text)
+            else:
+                identity.put({"user": user, "id": id, "tags": []}, "u")
+                return redirect(url_for("index"))
             
     
 @app.route("/home")

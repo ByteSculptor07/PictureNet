@@ -11,12 +11,10 @@
   <div class="container">
     <form action="" method="post">
       <center>
-      <h1 class="header">Login: {{ error }}</h1>
+      <h1 class="header">Login</h1>
       <br>
-      {% if error == "1" %}
-      <h4 class="error">Error: username already taken!</h4>
-      {% elif error == "2" %}
-      <h4 class="error">Error: your username has to be between 3 and 10 characters long!</h4>
+      {% if error %}
+      <h4 class="error">{{ error }}</h4>
       {% else %}
       <h4 class="header">Please choose a username</h4>
       {% endif %}

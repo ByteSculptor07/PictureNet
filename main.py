@@ -27,7 +27,7 @@ def login():
             identity.put({"user": user, "id": id, "tags": []}, "u")
             return redirect(url_for("index"))
         else:
-            return render_template("login.html", error="1")
+            return render_template("login.html", error="This is an error!!!")
     
 @app.route("/home")
 def home():

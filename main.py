@@ -25,7 +25,7 @@ def login():
         if not len(user) >= 3 and len(user) <= 10:
             return render_template("login.html", error="Your username has to be<br>between 3 and 10 characters long.")
         elif not user.isalnum():
-            return render_template("login.html", error="Your username cam only<br>contain alphanumeric characters.")
+            return render_template("login.html", error="Your username can only<br>contain alphanumeric characters.")
         else:
             id = "".join(random.choices(string.ascii_uppercase + string.ascii_lowercase + string.digits, k=20))
             identity.put({"user": user, "id": id, "tags": []}, "u")

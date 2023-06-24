@@ -3,8 +3,11 @@ from deta import Deta
 import random, string, requests
 import hashlib
 
-app = Flask(__name__)
+UPLOAD_FOLDER = './public'
+
 deta = Deta()
+app = Flask(__name__)
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 identity = deta.Base("identity")
 
@@ -54,4 +57,7 @@ def upload():
     elif not identity.get("u"):
         return redirect(url_for("index"))
     else:
-        return('request.files: ' + str(request.files))
+        img = request.files['uploadedIMG']
+        path = os.path.join(app.config['UPLOAD_FOLDER'], img.filename)
+        img.save(path)
+        return path

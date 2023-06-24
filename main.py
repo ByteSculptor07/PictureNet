@@ -1,15 +1,16 @@
 from flask import Flask, render_template, request, url_for, redirect, flash
 from deta import Deta
 import random, string, requests
-import hashlib
+import hashlib, os, base64
 
-UPLOAD_FOLDER = './public'
+UPLOAD_FOLDER = '/tmp'
 
 deta = Deta()
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 identity = deta.Base("identity")
+img_drive = deta.Drive("imgs")
 
 @app.route("/")
 def index():
@@ -58,6 +59,13 @@ def upload():
         return redirect(url_for("index"))
     else:
         img = request.files['uploadedIMG']
-        path = os.path.join(app.config['UPLOAD_FOLDER'], img.filename)
-        img.save(path)
-        return path
+        name = "".join(random.choices(string.ascii_uppercase + string.ascii_lowercase + string.digits, k=15))
+        data = base64.b64decode(img.read())
+        img_drive.put(name, data)
+        return name
+
+@app.route("/view/<img>")
+def view(img):
+    response = img_drive.get(img)
+    content = response.read()
+    return str(response)

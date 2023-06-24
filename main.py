@@ -69,3 +69,4 @@ def view(img):
     response = img_drive.get(img)
     content = response.read()
     img = base64.b64encode(content).decode("utf-8")
+    return '<img src="' + img + '">'

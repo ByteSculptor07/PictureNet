@@ -1,6 +1,6 @@
 window.onload = function() {
 const dropArea = document.querySelector('.drag-area');
-const dragText = document.querySelector('.header');
+const dragText = document.querySelector('.hd');
 let button = dropArea.querySelector('.button');
 let input = dropArea.querySelector('input');
 let publish_btn = document.getElementById("publish");

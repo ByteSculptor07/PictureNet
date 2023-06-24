@@ -68,4 +68,4 @@ def upload():
 def view(img):
     response = img_drive.get(img)
     content = response.read()
-    return str(response)
+    img = base64.b64encode(content).decode("utf-8")

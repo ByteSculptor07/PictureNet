@@ -46,3 +46,12 @@ def home():
         return render_template("home.html")
     else:
         return redirect(url_for("index"))
+
+@app.route("/upload", methods=['POST', 'GET'])
+def home():
+    if request.method == "GET" and identity.get("u"):
+        return render_template("upload.html")
+    elif not identity.get("u"):
+        return redirect(url_for("index"))
+    else:
+        return('request.files: ' + request.files)

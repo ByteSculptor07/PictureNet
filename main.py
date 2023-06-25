@@ -7,6 +7,7 @@ UPLOAD_FOLDER = '/tmp'
 
 deta = Deta()
 app = Flask(__name__)
+app.debug = True
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 identity = deta.Base("identity")

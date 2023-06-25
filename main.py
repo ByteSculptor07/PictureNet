@@ -67,7 +67,10 @@ def upload():
         #return render_template('img.html', image_data=encoded_image)
         name = "".join(random.choices(string.ascii_uppercase + string.ascii_lowercase + string.digits, k=10))
         img_drive.put(name + ".txt", data=encoded_image)
-        return name
+        response = img_drive.get(img + ".txt")
+        content = response.read()
+        return render_template('img.html', image_data=content)
+        #return name
         
 
 @app.route("/view/<img>")

@@ -84,8 +84,8 @@ def view(img):
 
 @app.route("/cdn/<image>", methods=["GET"])
 def image_cdn(image):
-    img = images.get(image)
-    return str(img)
+    img = images.get(image).read()
+    return image + ": " + str(img)
     """
     return send_file(
         img.read(),

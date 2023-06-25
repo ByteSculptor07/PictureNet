@@ -8,8 +8,7 @@ deta = Deta()
 app = Flask(__name__)
 
 identity = deta.Base("identity")
-img_drive = deta.Drive("imgs")
-cdn = deta.Base("images")
+img_info = deta.Base("images")
 images = deta.Drive("images")
 
 @app.route("/")
@@ -63,32 +62,15 @@ def upload():
         extension = image.filename.split(".")[-1]
         image_data = image.read()
         image_data_encoded = base64.b64encode(image_data).decode("utf-8")
-        item = cdn.put(
-            {
-                "ext": extension,
-                "visibility": True,
-                "embed": [{"title": "", "colour": "000000"}],
-            },
-        )
+        item = img_info.put({"ext": extension})
         id = item["key"]
         images.put(f"{id}.{extension}", base64.b64decode(image_data_encoded))
-        url = f"{request.scheme}://{request.host}/cdn/{id}.{extension}"
-        return jsonify({"image": url, "id": id})
+        return f"{id}.{extension}"
 
 
-@app.route("/view/<img>")
-def view(img):
-    response = img_drive.get(img + ".txt")
-    content = response.read()
-    ii = base64.b64decode(content).decode("utf-8")
-    return render_template('img.html', image_data=ii)
-
-@app.route("/cdn/<image>", methods=["GET"])
-def image_cdn(image):
+@app.route("/view/<image>", methods=["GET"])
+def view(image):
     img = images.get(image).read()
-    #return image + ": " + str(img)
-    
-    
     return send_file(
         io.BytesIO(img),
         mimetype=f"image/{image.split('.')[1]}",

@@ -11,6 +11,8 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 identity = deta.Base("identity")
 img_drive = deta.Drive("imgs")
+cdn = Base("images")
+images = Drive("images")
 
 @app.route("/")
 def index():
@@ -76,3 +78,15 @@ def view(img):
     content = response.read()
     ii = base64.b64decode(content).decode("utf-8")
     return render_template('img.html', image_data=ii)
+
+@app.route("/cdn/<image>", methods=["GET"])
+def image_cdn(image):
+    img = images.get(image)
+    info = cdn.get(image.split(".")[0])
+    if info["visibility"] == True:
+        return send_file(
+            img.read(),
+            mimetype=f"image/{image.split('.')[1]}",
+        )
+    else:
+        return jsonify({"error": 404})

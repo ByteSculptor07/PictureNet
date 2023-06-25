@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, url_for, redirect, flash, send_file
+from flask import Flask, render_template, request, url_for, redirect, flash, send_file, jsonify
 from deta import Deta
 import random, string, requests
 import hashlib, os, base64
@@ -11,8 +11,8 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 identity = deta.Base("identity")
 img_drive = deta.Drive("imgs")
-cdn = Base("images")
-images = Drive("images")
+cdn = deta.Base("images")
+images = deta.Drive("images")
 
 @app.route("/")
 def index():

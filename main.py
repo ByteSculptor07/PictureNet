@@ -66,12 +66,12 @@ def upload():
         encoded_image = base64.b64encode(image_data).decode('utf-8')
         #return render_template('img.html', image_data=encoded_image)
         name = "".join(random.choices(string.ascii_uppercase + string.ascii_lowercase + string.digits, k=10))
-        img_drive.put(name, encoded_image)
+        img_drive.put(name + ".txt", data=encoded_image)
         return name
         
 
 @app.route("/view/<img>")
 def view(img):
-    response = img_drive.get(img)
+    response = img_drive.get(img + ".txt")
     content = response.read()
     return render_template('img.html', image_data=content)

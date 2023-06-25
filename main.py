@@ -3,12 +3,8 @@ from deta import Deta
 import random, string, requests
 import hashlib, os, base64
 
-UPLOAD_FOLDER = '/tmp'
-
 deta = Deta()
 app = Flask(__name__)
-app.debug = True
-app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 identity = deta.Base("identity")
 img_drive = deta.Drive("imgs")
@@ -89,11 +85,7 @@ def view(img):
 @app.route("/cdn/<image>", methods=["GET"])
 def image_cdn(image):
     img = images.get(image)
-    info = cdn.get(image.split(".")[0])
-    if info["visibility"] == True:
-        return send_file(
-            img.read(),
-            mimetype=f"image/{image.split('.')[1]}",
-        )
-    else:
-        return jsonify({"error": 404})
+    return send_file(
+        img.read(),
+        mimetype=f"image/{image.split('.')[1]}",
+    )

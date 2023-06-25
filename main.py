@@ -3,14 +3,12 @@ from deta import Deta
 import random, string, requests
 import hashlib, os, base64
 
-UPLOAD_FOLDER = '/tmp'
-
 deta = Deta()
 app = Flask(__name__)
-app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 identity = deta.Base("identity")
-img_drive = deta.Drive("imgs")
+cdn = Base("images")
+images = Drive("images")
 
 @app.route("/")
 def index():
@@ -58,16 +56,18 @@ def upload():
     elif not identity.get("u"):
         return redirect(url_for("index"))
     else:
-        #img = request.files['uploadedIMG']
-        image = request.files['uploadedIMG']
-        # Read the image data
+        image = request.files.get("image")
+        extension = image.filename.split(".")[-1]
         image_data = image.read()
         # Convert the image data to base64
         encoded_image = base64.b64encode(image_data).decode('utf-8')
         #return render_template('img.html', image_data=encoded_image)
         name = "".join(random.choices(string.ascii_uppercase + string.ascii_lowercase + string.digits, k=10))
         img_drive.put(name + ".txt", data=encoded_image)
-        return name
+        response = img_drive.get(img + ".txt")
+        content = response.read()
+        return render_template('img.html', image_data=content)
+        #return name
         
 
 @app.route("/view/<img>")

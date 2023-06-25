@@ -53,6 +53,7 @@ def home():
     else:
         return redirect(url_for("index"))
 
+
 @app.route("/upload", methods=['POST', 'GET'])
 def upload():
     if request.method == "GET" and identity.get("u"):
@@ -60,17 +61,22 @@ def upload():
     elif not identity.get("u"):
         return redirect(url_for("index"))
     else:
-        #img = request.files['uploadedIMG']
-        image = request.files['uploadedIMG']
-        # Read the image data
+        image = request.files.get("uploadedIMG")
+        extension = image.filename.split(".")[-1]
         image_data = image.read()
-        # Convert the image data to base64
-        encoded_image = base64.b64encode(image_data).decode('utf-8')
-        #return render_template('img.html', image_data=encoded_image)
-        name = "".join(random.choices(string.ascii_uppercase + string.ascii_lowercase + string.digits, k=10))
-        img_drive.put(name + ".txt", data=encoded_image)
-        return name
-        
+        image_data_encoded = base64.b64encode(image_data).decode("utf-8")
+        item = cdn.put(
+            {
+                "ext": extension,
+                "visibility": True,
+                "embed": [{"title": "", "colour": "000000"}],
+            },
+        )
+        id = item["key"]
+        images.put(f"{id}.{extension}", base64.b64decode(image_data_encoded))
+        url = f"{request.scheme}://{request.host}/cdn/{id}.{extension}"
+        return jsonify({"image": url, "id": id})
+
 
 @app.route("/view/<img>")
 def view(img):

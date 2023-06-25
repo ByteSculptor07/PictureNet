@@ -59,20 +59,35 @@ def upload():
         image = request.files.get("image")
         extension = image.filename.split(".")[-1]
         image_data = image.read()
-        # Convert the image data to base64
-        encoded_image = base64.b64encode(image_data).decode('utf-8')
-        #return render_template('img.html', image_data=encoded_image)
-        name = "".join(random.choices(string.ascii_uppercase + string.ascii_lowercase + string.digits, k=10))
-        img_drive.put(name + ".txt", data=encoded_image)
-        response = img_drive.get(img + ".txt")
-        content = response.read()
-        return render_template('img.html', image_data=content)
-        #return name
+        image_data_encoded = base64.b64encode(image_data).decode("utf-8")
+        item = cdn.put(
+            {
+                "ext": extension,
+                "visibility": False,
+                "embed": [{"title": "", "colour": "000000"}],
+            },
+        )
+        id = item["key"]
+        images.put(f"{id}.{extension}", base64.b64decode(image_data_encoded))
+        url = f"{request.scheme}://{request.host}/cdn/{id}.{extension}"
+        return jsonify({"image": url, "id": id})
+     
+           
+@app.route("/cdn/<image>", methods=["GET"])
+def image_cdn(image):
+    img = images.get(image)
+    info = cdn.get(image.split(".")[0])
+    if info["visibility"] == True:
+        return send_file(
+            img.read(),
+            mimetype=f"image/{image.split('.')[1]}",
+        )
+    else:
+        return jsonify({"error": 404})
         
 
 @app.route("/view/<img>")
 def view(img):
     response = img_drive.get(img + ".txt")
     content = response.read()
-    ii = base64.b64decode(content).decode("utf-8")
-    return render_template('img.html', image_data=ii)
+    return render_template('img.html', image_data=content)

@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, url_for, redirect, flash, sen
 from deta import Deta
 import random, string, requests
 import hashlib, os, base64
+import io
 
 deta = Deta()
 app = Flask(__name__)
@@ -89,7 +90,7 @@ def image_cdn(image):
     
     
     return send_file(
-        img,
+        io.BytesIO(img),
         mimetype=f"image/{image.split('.')[1]}",
     )
     

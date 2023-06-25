@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, url_for, redirect, flash
+from flask import Flask, render_template, request, url_for, redirect, flash, send_file
 from deta import Deta
 import random, string, requests
 import hashlib, os, base64

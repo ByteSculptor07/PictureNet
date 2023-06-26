@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, url_for, redirect, flash, send_file, jsonify
+from flask import *
 from deta import Deta
 import random, string, requests
 import hashlib, os, base64
@@ -17,6 +17,12 @@ def index():
         return redirect(url_for("login"))
     else:
         return redirect(url_for("home"))
+
+
+@app.route('/favicon.ico')
+def favicon():
+    return send_from_directory(os.path.join(application.root_path, 'icons'), 'favicon.ico', mimetype='image/vnd.microsoft.icon')
+
 
 @app.route("/login", methods=['POST', 'GET'])
 def login():

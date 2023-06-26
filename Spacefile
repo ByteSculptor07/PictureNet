@@ -8,4 +8,4 @@ micros:
     run: gunicorn main:app
     dev: .venv/bin/flask --app main run
     public_routes:
-      - "/public/*"
+      - "/view/*"

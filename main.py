@@ -21,7 +21,7 @@ def index():
 
 @app.route('/favicon.ico')
 def favicon():
-    return send_from_directory(os.path.join(application.root_path, 'icons'), 'favicon.ico', mimetype='image/vnd.microsoft.icon')
+    return send_from_directory(os.path.join(app.root_path, 'icons'), 'favicon.ico', mimetype='image/vnd.microsoft.icon')
 
 
 @app.route("/login", methods=['POST', 'GET'])

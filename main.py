@@ -73,9 +73,9 @@ def upload():
         images.put(f"{id}.{extension}", base64.b64decode(image_data_encoded))
         
         url = f"{request.url.scheme}://{request.url.hostname}/view/{id}.{extension}"
-        tags = request.form["tags"]
+        tags = request.form #["tags"]
         #return f"{id}.{extension}"
-        return url + " : " + tags
+        return str(url) + " : " + str(tags)
 
 
 @app.route("/view/<image>", methods=["GET"])

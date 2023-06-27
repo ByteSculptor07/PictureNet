@@ -77,7 +77,11 @@ def upload():
         user = identity.get("u")["user"]
         user_id = identity.get("u")["id"]
         obj = {"url": url, "tags": tags, "user": user, "id": user_id}
-        return str(obj)
+        r = requests.post(api_url + "addimg", json=obj)
+        if "success" in r.text:
+            return redirect(url_for("home"))
+        else:
+            return "<h1>ERROR</h1>" + str(r.text)
 
 
 @app.route("/view/<image>", methods=["GET"])

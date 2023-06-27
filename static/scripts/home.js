@@ -23,34 +23,6 @@ document.getElementById('content').addEventListener('scroll',
         var offsetHeight = document.getElementById('content').offsetHeight;
         var contentHeight = scrollHeight - offsetHeight;
         if (contentHeight - contentHeight / 3 <= scrollTop) {
-	    /*
-            var imgcon = document.createElement('div');
-            var heartcon = document.createElement('div');
-            var heartcen = document.createElement('div');
-            var heartbtn = document.createElement('button');
-            var heartico = document.createElement('i');
-            var heartcou = document.createElement('p');
-            
-            imgcon.className = 'img-container';
-            heartcon.className = 'heart-container';
-            heartcen.className = 'center-div';
-            heartbtn.className = 'heart-button';
-            heartico.className = 'ph-bold ph-heart-straight heart';
-            heartcou.className = 'counter';
-            
-            heartbtn.setAttribute("onclick", "heart_click(this)");
-            heartcou.innerHTML = "99";
-            
-            heartbtn.appendChild(heartico);
-            heartbtn.appendChild(heartcou);
-            heartcen.appendChild(heartbtn);
-            heartcon.appendChild(heartcen);
-            imgcon.appendChild(heartcon);
-            
-            imgcon.innerHTML += count;
-            count += 1;
-            document.getElementById('content').appendChild(imgcon);
-	    */
 	    const xhttp = new XMLHttpRequest();
             xhttp.onload = function() {
                 //document.getElementById("content").innerHTML = this.responseText;
@@ -59,6 +31,32 @@ document.getElementById('content').addEventListener('scroll',
 		for(var i = 0; i < count; i++) {
 		    var item = urllist[i];
 		    alert(item);
+		    var imgcon = document.createElement('div');
+                    var heartcon = document.createElement('div');
+                    var heartcen = document.createElement('div');
+                    var heartbtn = document.createElement('button');
+                    var heartico = document.createElement('i');
+                    var heartcou = document.createElement('p');
+            
+                    imgcon.className = 'img-container';
+                    heartcon.className = 'heart-container';
+                    heartcen.className = 'center-div';
+                    heartbtn.className = 'heart-button';
+                    heartico.className = 'ph-bold ph-heart-straight heart';
+                    heartcou.className = 'counter';
+            
+                    heartbtn.setAttribute("onclick", "heart_click(this)");
+                    heartcou.innerHTML = "99";
+                    
+                    heartbtn.appendChild(heartico);
+                    heartbtn.appendChild(heartcou);
+                    heartcen.appendChild(heartbtn);
+                    heartcon.appendChild(heartcen);
+                    imgcon.appendChild(heartcon);
+            
+                    imgcon.innerHTML += count;
+                    count += 1;
+                    document.getElementById('content').appendChild(imgcon);
 		}
             }
             xhttp.open("GET", "test/and");

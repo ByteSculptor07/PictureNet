@@ -56,6 +56,7 @@ document.getElementById('content').addEventListener('scroll',
                 document.getElementById("content").innerHTML = this.responseText;
             }
             xhttp.open("GET", api_url + "");
+	    xhttp.setRequestHeader("Access-Control-Allow-Origin", "*");
             xhttp.send();
         }
     }, false

@@ -23,7 +23,8 @@ document.getElementById('content').addEventListener('scroll',
         var offsetHeight = document.getElementById('content').offsetHeight;
         var contentHeight = scrollHeight - offsetHeight;
         if (contentHeight - contentHeight / 3 <= scrollTop) {
-        	var imgcon = document.createElement('div');
+	    /*
+            var imgcon = document.createElement('div');
             var heartcon = document.createElement('div');
             var heartcen = document.createElement('div');
             var heartbtn = document.createElement('button');
@@ -49,6 +50,13 @@ document.getElementById('content').addEventListener('scroll',
             imgcon.innerHTML += count;
             count += 1;
             document.getElementById('content').appendChild(imgcon);
+	    */
+	    const xhttp = new XMLHttpRequest();
+            xhttp.onload = function() {
+                document.getElementById("content").innerHTML = this.responseText;
+            }
+            xhttp.open("GET", api_url + "");
+            xhttp.send();
         }
     }, false
 )

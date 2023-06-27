@@ -53,7 +53,13 @@ document.getElementById('content').addEventListener('scroll',
 	    */
 	    const xhttp = new XMLHttpRequest();
             xhttp.onload = function() {
-                document.getElementById("content").innerHTML = this.responseText;
+                //document.getElementById("content").innerHTML = this.responseText;
+		var urllist = this.responseText.split(",");
+		var count = urllist.length;
+		for(var i = 0; i < count; i++) {
+		    var item = urllist[i];
+		    alert(item);
+		}
             }
             xhttp.open("GET", "test/and");
 	        xhttp.setRequestHeader("Access-Control-Allow-Origin", "*");

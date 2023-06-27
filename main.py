@@ -1,11 +1,13 @@
 from flask import *
 from deta import Deta
+from flask_jsglue import JSGlue
 import random, string, requests
 import hashlib, os, base64
 import io
 
 deta = Deta()
 app = Flask(__name__)
+jsglue = JSGlue(app)
 
 identity = deta.Base("identity")
 img_info = deta.Base("images")

@@ -74,7 +74,7 @@ def upload():
         
         #url = f"{request.url.scheme}://{request.url.hostname}/view/{id}.{extension}"
         url= "h"
-        tags = request.form #["tags"]
+        tags = request.form["tags"]
         #return f"{id}.{extension}"
         return str(url) + " : " + str(tags)
 

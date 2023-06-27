@@ -71,7 +71,9 @@ def upload():
         item = img_info.put({"ext": extension})
         id = item["key"]
         images.put(f"{id}.{extension}", base64.b64decode(image_data_encoded))
-        return f"{id}.{extension}"
+        url = f"{request.url.scheme}://{request.url.hostname}/view/{id}.{extension}"
+        #return f"{id}.{extension}"
+        return url
 
 
 @app.route("/view/<image>", methods=["GET"])

@@ -2,3 +2,4 @@ Flask
 gunicorn
 deta
 requests
+Flask-JSGlue

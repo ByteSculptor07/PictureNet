@@ -92,3 +92,6 @@ def view(image):
         mimetype=f"image/{image.split('.')[1]}",
     )
     
+@app.route("/test/<val>", methods=["GET"])
+def test(val):
+    return str(val) + " working!"

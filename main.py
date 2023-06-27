@@ -71,9 +71,11 @@ def upload():
         item = img_info.put({"ext": extension})
         id = item["key"]
         images.put(f"{id}.{extension}", base64.b64decode(image_data_encoded))
+        
         url = f"{request.url.scheme}://{request.url.hostname}/view/{id}.{extension}"
+        tags = request.form["tags"]
         #return f"{id}.{extension}"
-        return url
+        return url + " : " + tags
 
 
 @app.route("/view/<image>", methods=["GET"])

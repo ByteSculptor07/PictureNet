@@ -72,7 +72,7 @@ def upload():
         id = item["key"]
         images.put(f"{id}.{extension}", base64.b64decode(image_data_encoded))
         
-        url = f"{request.url.scheme}://{request.url.hostname}/view/{id}.{extension}"
+        url = f"{request.url_root}/view/{id}.{extension}"
         #url= "h"
         tags = request.form["tags"]
         #return f"{id}.{extension}"

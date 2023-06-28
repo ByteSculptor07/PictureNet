@@ -22,14 +22,16 @@ document.getElementById('content').addEventListener('scroll',
         var scrollHeight = document.getElementById('content').scrollHeight;
         var offsetHeight = document.getElementById('content').offsetHeight;
         var contentHeight = scrollHeight - offsetHeight;
-        if (contentHeight - 10 - contentHeight / 3 <= scrollTop) {
+        if (contentHeight - contentHeight / 3 <= scrollTop + 10) {
 	    const xhttp = new XMLHttpRequest();
             xhttp.onload = function() {
                 //document.getElementById("content").innerHTML = this.responseText;
 		var urllist = this.responseText.split(",");
 		var loop_count = urllist.length;
-		if loop_count > 0 {
+        alert(loop_count)
+		if (loop_count > 0) {
 		    for(var i = 0; i < loop_count; i++) {
+                count += 1;
 		        var item = urllist[i];
 		        //alert(item);
 		        var imgcon = document.createElement('div');
@@ -64,7 +66,6 @@ document.getElementById('content').addEventListener('scroll',
             xhttp.open("GET", "getimg/" + count.toString());
 	    xhttp.setRequestHeader("Access-Control-Allow-Origin", "*");
             xhttp.send();
-	    count += 1;
         }
     }, false
 )

@@ -22,47 +22,49 @@ document.getElementById('content').addEventListener('scroll',
         var scrollHeight = document.getElementById('content').scrollHeight;
         var offsetHeight = document.getElementById('content').offsetHeight;
         var contentHeight = scrollHeight - offsetHeight;
-        if (contentHeight - contentHeight / 3 <= scrollTop) {
+        if (contentHeight - 10 - contentHeight / 3 <= scrollTop) {
 	    const xhttp = new XMLHttpRequest();
             xhttp.onload = function() {
                 //document.getElementById("content").innerHTML = this.responseText;
 		var urllist = this.responseText.split(",");
 		var loop_count = urllist.length;
-		for(var i = 0; i < loop_count; i++) {
-		    var item = urllist[i];
-		    //alert(item);
-		    var imgcon = document.createElement('div');
-                    var heartcon = document.createElement('div');
-                    var heartcen = document.createElement('div');
-                    var heartbtn = document.createElement('button');
-                    var heartico = document.createElement('i');
-                    var heartcou = document.createElement('p');
+		if loop_count > 0 {
+		    for(var i = 0; i < loop_count; i++) {
+		        var item = urllist[i];
+		        //alert(item);
+		        var imgcon = document.createElement('div');
+                        var heartcon = document.createElement('div');
+                        var heartcen = document.createElement('div');
+                        var heartbtn = document.createElement('button');
+                        var heartico = document.createElement('i');
+                        var heartcou = document.createElement('p');
             
-                    imgcon.className = 'img-container';
-                    heartcon.className = 'heart-container';
-                    heartcen.className = 'center-div';
-                    heartbtn.className = 'heart-button';
-                    heartico.className = 'ph-bold ph-heart-straight heart';
-                    heartcou.className = 'counter';
+                        imgcon.className = 'img-container';
+                        heartcon.className = 'heart-container';
+                        heartcen.className = 'center-div';
+                        heartbtn.className = 'heart-button';
+                        heartico.className = 'ph-bold ph-heart-straight heart';
+                        heartcou.className = 'counter';
             
-                    heartbtn.setAttribute("onclick", "heart_click(this)");
-                    heartcou.innerHTML = "99";
-		    imgcon.style.backgroundImage = "url('" + item + "')";
+                        heartbtn.setAttribute("onclick", "heart_click(this)");
+                        heartcou.innerHTML = "99";
+		        imgcon.style.backgroundImage = "url('" + item + "')";
                     
-                    heartbtn.appendChild(heartico);
-                    heartbtn.appendChild(heartcou);
-                    heartcen.appendChild(heartbtn);
-                    heartcon.appendChild(heartcen);
-                    imgcon.appendChild(heartcon);
+                        heartbtn.appendChild(heartico);
+                        heartbtn.appendChild(heartcou);
+                        heartcen.appendChild(heartbtn);
+                        heartcon.appendChild(heartcen);
+                        imgcon.appendChild(heartcon);
             
-                    //imgcon.innerHTML += count;
-                    document.getElementById('content').appendChild(imgcon);
-		}
-                count += 1
+                        //imgcon.innerHTML += count;
+                        document.getElementById('content').appendChild(imgcon);
+		    }
+	        }
             }
             xhttp.open("GET", "getimg/" + count.toString());
 	    xhttp.setRequestHeader("Access-Control-Allow-Origin", "*");
             xhttp.send();
+	    count += 1;
         }
     }, false
 )

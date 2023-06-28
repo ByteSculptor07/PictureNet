@@ -1,4 +1,5 @@
 var count = 1;
+var firstload = true;
 function heart_click(element) {
 	var heart = element.firstChild;
 	var counter = element.lastChild;
@@ -22,7 +23,8 @@ document.getElementById('content').addEventListener('scroll',
         var scrollHeight = document.getElementById('content').scrollHeight;
         var offsetHeight = document.getElementById('content').offsetHeight;
         var contentHeight = scrollHeight - offsetHeight;
-        if (contentHeight - contentHeight / 3 <= scrollTop) {
+        if (contentHeight - contentHeight / 3 <= scrollTop || firstload) {
+            firstload = false;
 	    const xhttp = new XMLHttpRequest();
             xhttp.onload = function() {
                 //document.getElementById("content").innerHTML = this.responseText;

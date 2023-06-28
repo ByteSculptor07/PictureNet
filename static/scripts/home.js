@@ -47,6 +47,7 @@ document.getElementById('content').addEventListener('scroll',
             
                     heartbtn.setAttribute("onclick", "heart_click(this)");
                     heartcou.innerHTML = "99";
+		    imgcon.style.backgroundImage = "url('" + item + "')";
                     
                     heartbtn.appendChild(heartico);
                     heartbtn.appendChild(heartcou);
@@ -59,8 +60,8 @@ document.getElementById('content').addEventListener('scroll',
                     document.getElementById('content').appendChild(imgcon);
 		}
             }
-            xhttp.open("GET", "test/and");
-	        xhttp.setRequestHeader("Access-Control-Allow-Origin", "*");
+            xhttp.open("GET", "test/hello");
+	    xhttp.setRequestHeader("Access-Control-Allow-Origin", "*");
             xhttp.send();
         }
     }, false

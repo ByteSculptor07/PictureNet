@@ -17,8 +17,8 @@ function heart_click(element) {
 	};
 };
 window.onload = function() {
-document.getElementById('content').addEventListener('scroll',
-    function() {
+    document.getElementById('content').addEventListener('scroll', addpage);
+    function addpage() {
         var scrollTop = document.getElementById('content').scrollTop;
         var scrollHeight = document.getElementById('content').scrollHeight;
         var offsetHeight = document.getElementById('content').offsetHeight;
@@ -69,6 +69,6 @@ document.getElementById('content').addEventListener('scroll',
 	    xhttp.setRequestHeader("Access-Control-Allow-Origin", "*");
             xhttp.send();
         }
-    }, false
-)
+    }
+    addpage()
 };

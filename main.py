@@ -92,7 +92,8 @@ def view(image):
         mimetype=f"image/{image.split('.')[1]}",
     )
     
-@app.route("/test/<val>", methods=["GET"])
+@app.route("/getimg/<val>", methods=["GET"])
 def test(val):
     #return str(val) + " working!"
-    return "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Google_2015_logo.svg/2560px-Google_2015_logo.svg.png,http://picturenet-1-s2691679.deta.app/view/h77bf9vas0c9.png"
+    r = requests.get(api_url + "getimg/" + str(val))
+    return r.text

@@ -55,12 +55,12 @@ document.getElementById('content').addEventListener('scroll',
                     heartcon.appendChild(heartcen);
                     imgcon.appendChild(heartcon);
             
-                    imgcon.innerHTML += count;
-                    count += 1;
+                    //imgcon.innerHTML += count;
                     document.getElementById('content').appendChild(imgcon);
 		}
+        count += 1
             }
-            xhttp.open("GET", "test/hello");
+            xhttp.open("GET", "getimg/" + count.toString());
 	    xhttp.setRequestHeader("Access-Control-Allow-Origin", "*");
             xhttp.send();
         }

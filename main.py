@@ -95,4 +95,4 @@ def view(image):
 @app.route("/test/<val>", methods=["GET"])
 def test(val):
     #return str(val) + " working!"
-    return str(val) + "http://picturenet-1-s2691679.deta.app/view/h77bf9vas0c9.png,http://picturenet-1-s2691679.deta.app/view/h77bf9vas0c9.png"
+    return "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Google_2015_logo.svg/2560px-Google_2015_logo.svg.png,http://picturenet-1-s2691679.deta.app/view/h77bf9vas0c9.png"

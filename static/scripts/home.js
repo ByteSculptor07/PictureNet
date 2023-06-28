@@ -27,10 +27,10 @@ document.getElementById('content').addEventListener('scroll',
             xhttp.onload = function() {
                 //document.getElementById("content").innerHTML = this.responseText;
 		var urllist = this.responseText.split(",");
-		var count = urllist.length;
-		for(var i = 0; i < count; i++) {
+		var loop_count = urllist.length;
+		for(var i = 0; i < loop_count; i++) {
 		    var item = urllist[i];
-		    alert(item);
+		    //alert(item);
 		    var imgcon = document.createElement('div');
                     var heartcon = document.createElement('div');
                     var heartcen = document.createElement('div');

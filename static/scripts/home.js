@@ -30,8 +30,8 @@ window.onload = function() {
                 //document.getElementById("content").innerHTML = this.responseText;
 		var urllist = this.responseText.split(",");
 		var loop_count = urllist.length;
-        alert(loop_count)
-		if (loop_count > 0) {
+        //alert(loop_count)
+		if (loop_count > 1) {
 		    for(var i = 0; i < loop_count; i++) {
                 count += 1;
 		        var item = urllist[i];

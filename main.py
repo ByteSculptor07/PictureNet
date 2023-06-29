@@ -45,7 +45,7 @@ def login():
             elif not "success" in r.text:
                 return render_template("login.html", error="An unknown error occurrented:<br>" + r.text)
             else:
-                identity.put({"user": user, "id": id, "tags": []}, "u")
+                identity.put({"user": user, "id": id, "liked": []}, "u")
                 return redirect(url_for("index"))
             
     

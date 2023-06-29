@@ -8,6 +8,9 @@ function heart_click(element) {
 	    heart.className = "ph-fill ph-heart-straight heart";
 	    if (!Number.isNaN(counter_num)) {
 	        counter.innerHTML = Number(counter_num) + 1;
+		const xhttp = new XMLHttpRequest();
+		xhttp.open("POST", "like/");
+                xhttp.send({"url": "http://picturenet-1-s2691679.deta.app/view/3chfd35m3exm.jpg"});
 	    }
 	} else {
 		heart.className = "ph-bold ph-heart-straight heart";
@@ -27,7 +30,6 @@ window.onload = function() {
             firstload = false;
 	    const xhttp = new XMLHttpRequest();
             xhttp.onload = function() {
-                //document.getElementById("content").innerHTML = this.responseText;
 		var urllist = this.responseText.split(",");
 		var loop_count = urllist.length;
         //alert(loop_count)

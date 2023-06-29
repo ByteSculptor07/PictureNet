@@ -100,20 +100,20 @@ def test(val):
 
 @app.route("/like", methods=["POST"])
 def like():
-    request_data = request.get_json()
-    if request_data:
+    url = request.get_data()
+    if url:
         user = identity.get("u")["user"]
         user_id = identity.get("u")["id"]
-        obj = {"user": user, "id": user_id, "url": url}
+        obj = {"user": user, "id": user_id, "url": str(url)}
         r = requests.post(api_url + "like", json=obj)
-        return r.text
+        return str(r.text)
     else:
         return "error: no data!"
 
 @app.route("/unlike", methods=["POST"])
 def unlike():
-    request_data = request.get_json()
-    if request_data:
+    url = request.data
+    if url:
         user = identity.get("u")["user"]
         user_id = identity.get("u")["id"]
         obj = {"user": user, "id": user_id, "url": url}

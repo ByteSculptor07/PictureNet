@@ -66,7 +66,6 @@ window.onload = function() {
 	        }
             }
             xhttp.open("GET", "getimg/" + count.toString());
-	    xhttp.setRequestHeader("Access-Control-Allow-Origin", "*");
             xhttp.send();
         }
     }

@@ -98,18 +98,26 @@ def test(val):
     r = requests.get(api_url + "getimg/" + str(val))
     return r.text
 
-@app.route("/like/<url>", methods=["GET"])
-def like(url):
-    user = identity.get("u")["user"]
-    user_id = identity.get("u")["id"]
-    obj = {"user": user, "id": user_id, "url": url}
-    r = requests.post(api_url + "like", json=obj)
-    return r.text
+@app.route("/like", methods=["POST"])
+def like():
+    request_data = request.get_json()
+    if request_data:
+        user = identity.get("u")["user"]
+        user_id = identity.get("u")["id"]
+        obj = {"user": user, "id": user_id, "url": url}
+        r = requests.post(api_url + "like", json=obj)
+        return r.text
+    else:
+        return "error: no data!"
 
-@app.route("/unlike/<url>", methods=["GET"])
-def unlike(url):
-    user = identity.get("u")["user"]
-    user_id = identity.get("u")["id"]
-    obj = {"user": user, "id": user_id, "url": url}
-    r = requests.post(api_url + "unlike", json=obj)
-    return r.text
+@app.route("/unlike", methods=["POST"])
+def unlike():
+    request_data = request.get_json()
+    if request_data:
+        user = identity.get("u")["user"]
+        user_id = identity.get("u")["id"]
+        obj = {"user": user, "id": user_id, "url": url}
+        r = requests.post(api_url + "unlike", json=obj)
+        return r.text
+    else:
+        return "error: no data!"

@@ -97,3 +97,19 @@ def test(val):
     #return str(val) + " working!"
     r = requests.get(api_url + "getimg/" + str(val))
     return r.text
+
+@app.route("/like/<url>", methods=["GET"])
+def like(url):
+    user = identity.get("u")["user"]
+    user_id = identity.get("u")["id"]
+    obj = {"user": user, "id": user_id, "url": url}
+    r = requests.post(api_url + "like", json=obj)
+    return r.text
+
+@app.route("/unlike/<url>", methods=["GET"])
+def unlike(url):
+    user = identity.get("u")["user"]
+    user_id = identity.get("u")["id"]
+    obj = {"user": user, "id": user_id, "url": url}
+    r = requests.post(api_url + "unlike", json=obj)
+    return r.text

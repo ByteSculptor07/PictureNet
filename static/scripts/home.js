@@ -11,15 +11,15 @@ function heart_click(element) {
 	        counter.innerHTML = Number(counter_num) + 1;
 		    const xhttp = new XMLHttpRequest();
 		    xhttp.open("POST", "like");
-            xhttp.send(img_url);
+                    xhttp.send(img_url);
 	    }
 	} else {
 		heart.className = "ph-bold ph-heart-straight heart";
 		if (!Number.isNaN(counter_num)) {
 		    counter.innerHTML = Number(counter_num) - 1;
-            const xhttp = new XMLHttpRequest();
+                    const xhttp = new XMLHttpRequest();
 		    xhttp.open("POST", "unlike");
-            xhttp.send(img_url);
+                    xhttp.send(img_url);
 		}
 	};
 };
@@ -36,13 +36,13 @@ window.onload = function() {
             xhttp.onload = function() {
 		var urllist = this.responseText.split(";");
 		var loop_count = urllist.length;
-        //alert(loop_count)
 		if (loop_count > 1) {
 		    for(var i = 0; i < loop_count; i++) {
-                count += 1;
+                        count += 1;
 		        var item = urllist[i].split(",")[0];
-                var likes = urllist[i].split(",")[1];
-		        //alert(item);
+                        var likes = urllist[i].split(",")[1];
+			var liked = urllist[i].split(",")[2]
+			    
 		        var imgcon = document.createElement('div');
                         var heartcon = document.createElement('div');
                         var heartcen = document.createElement('div');
@@ -54,7 +54,10 @@ window.onload = function() {
                         heartcon.className = 'heart-container';
                         heartcen.className = 'center-div';
                         heartbtn.className = 'heart-button';
-                        heartico.className = 'ph-bold ph-heart-straight heart';
+			if liked == "0":
+                            heartico.className = 'ph-bold ph-heart-straight heart';
+			else:
+			    heartico.className = 'ph-fill ph-heart-straight heart';
                         heartcou.className = 'counter';
             
                         heartbtn.setAttribute("onclick", "heart_click(this)");

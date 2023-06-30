@@ -4,13 +4,14 @@ function heart_click(element) {
 	var heart = element.firstChild;
 	var counter = element.lastChild;
 	var counter_num = counter.innerHTML;
+    var img_url = element.parentElement.parentElement.parentElement.style.backgroundImage.slice(5, -2);
 	if (heart.className == "ph-bold ph-heart-straight heart") {
 	    heart.className = "ph-fill ph-heart-straight heart";
 	    if (!Number.isNaN(counter_num)) {
 	        counter.innerHTML = Number(counter_num) + 1;
 		    const xhttp = new XMLHttpRequest();
 		    xhttp.open("POST", "like");
-            xhttp.send("http://picturenet-1-s2691679.deta.app/view/3chfd35m3exm.jpg");
+            xhttp.send(img_url);
 	    }
 	} else {
 		heart.className = "ph-bold ph-heart-straight heart";
@@ -18,7 +19,7 @@ function heart_click(element) {
 		    counter.innerHTML = Number(counter_num) - 1;
             const xhttp = new XMLHttpRequest();
 		    xhttp.open("POST", "unlike");
-            xhttp.send("http://picturenet-1-s2691679.deta.app/view/3chfd35m3exm.jpg");
+            xhttp.send(img_url);
 		}
 	};
 };

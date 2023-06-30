@@ -54,10 +54,11 @@ window.onload = function() {
                         heartcon.className = 'heart-container';
                         heartcen.className = 'center-div';
                         heartbtn.className = 'heart-button';
-			if liked == "0":
+			if (liked == "0") {
                             heartico.className = 'ph-bold ph-heart-straight heart';
-			else:
+			} else {
 			    heartico.className = 'ph-fill ph-heart-straight heart';
+			};
                         heartcou.className = 'counter';
             
                         heartbtn.setAttribute("onclick", "heart_click(this)");

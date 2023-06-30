@@ -17,7 +17,7 @@ function heart_click(element) {
 		if (!Number.isNaN(counter_num)) {
 		    counter.innerHTML = Number(counter_num) - 1;
             const xhttp = new XMLHttpRequest();
-		    xhttp.open("POST", "like");
+		    xhttp.open("POST", "unlike");
             xhttp.send("http://picturenet-1-s2691679.deta.app/view/3chfd35m3exm.jpg");
 		}
 	};

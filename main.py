@@ -100,11 +100,11 @@ def test(val):
 
 @app.route("/like", methods=["POST"])
 def like():
-    url = request.get_data()
+    url = request.get_data().decode("utf-8")
     if url:
         user = identity.get("u")["user"]
         user_id = identity.get("u")["id"]
-        obj = {"user": user, "id": user_id, "url": str(url)}
+        obj = {"user": user, "id": user_id, "url": url}
         r = requests.post(api_url + "like", json=obj)
         return str(r.text)
     else:
@@ -112,12 +112,12 @@ def like():
 
 @app.route("/unlike", methods=["POST"])
 def unlike():
-    url = request.data
+    url = request.get_data().decode("utf-8")
     if url:
         user = identity.get("u")["user"]
         user_id = identity.get("u")["id"]
         obj = {"user": user, "id": user_id, "url": url}
         r = requests.post(api_url + "unlike", json=obj)
-        return r.text
+        return str(r.text)
     else:
         return "error: no data!"

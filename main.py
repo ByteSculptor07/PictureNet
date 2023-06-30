@@ -102,11 +102,19 @@ def test(val):
 def like():
     url = request.get_data().decode("utf-8")
     if url:
+        liked = identity.get("u")["liked"]
         user = identity.get("u")["user"]
         user_id = identity.get("u")["id"]
-        obj = {"user": user, "id": user_id, "url": url}
-        r = requests.post(api_url + "like", json=obj)
-        return str(r.text)
+
+        if not url in liked:
+            liked.append(url)
+            identity.update({"liked": liked}, "u")
+
+            obj = {"user": user, "id": user_id, "url": url}
+            r = requests.post(api_url + "like", json=obj)
+            return str(r.text)
+        else:
+            return "error: already liked!"
     else:
         return "error: no data!"
 
@@ -114,10 +122,18 @@ def like():
 def unlike():
     url = request.get_data().decode("utf-8")
     if url:
+        liked = identity.get("u")["liked"]
         user = identity.get("u")["user"]
         user_id = identity.get("u")["id"]
-        obj = {"user": user, "id": user_id, "url": url}
-        r = requests.post(api_url + "unlike", json=obj)
-        return str(r.text)
+
+        if url in liked:
+            liked.remove(url)
+            identity.update({"liked": liked}, "u")
+
+            obj = {"user": user, "id": user_id, "url": url}
+            r = requests.post(api_url + "unlike", json=obj)
+            return str(r.text)
+        else:
+            return "error: not liked!"
     else:
         return "error: no data!"

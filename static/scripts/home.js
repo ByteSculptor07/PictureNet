@@ -34,13 +34,14 @@ window.onload = function() {
             firstload = false;
 	    const xhttp = new XMLHttpRequest();
             xhttp.onload = function() {
-		var urllist = this.responseText.split(",");
+		var urllist = this.responseText.split(";");
 		var loop_count = urllist.length;
         //alert(loop_count)
 		if (loop_count > 1) {
 		    for(var i = 0; i < loop_count; i++) {
                 count += 1;
-		        var item = urllist[i];
+		        var item = urllist[i].split(",")[0];
+                var likes = urllist[i].split(",")[1];
 		        //alert(item);
 		        var imgcon = document.createElement('div');
                         var heartcon = document.createElement('div');
@@ -57,7 +58,7 @@ window.onload = function() {
                         heartcou.className = 'counter';
             
                         heartbtn.setAttribute("onclick", "heart_click(this)");
-                        heartcou.innerHTML = "99";
+                        heartcou.innerHTML = likes;
 		        imgcon.style.backgroundImage = "url('" + item + "')";
                     
                         heartbtn.appendChild(heartico);

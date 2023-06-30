@@ -95,8 +95,19 @@ def view(image):
 @app.route("/getimg/<val>", methods=["GET"])
 def test(val):
     #return str(val) + " working!"
+    liked = identity.get("u")["liked"]
     r = requests.get(api_url + "getimg/" + str(val))
-    return r.text
+    list = r.text
+    res = ""
+    for item in list.split(";"):
+        if item.split(",")[0] in liked:
+            item += ",1;"
+            res += item
+        else:
+            item += ",0;"
+            res += item
+    return res[:-1]
+            
 
 @app.route("/like", methods=["POST"])
 def like():

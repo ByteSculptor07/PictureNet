@@ -41,7 +41,7 @@ window.onload = function() {
                         count += 1;
 		        var item = urllist[i].split(",")[0];
                         var likes = urllist[i].split(",")[1];
-			var liked = urllist[i].split(",")[2]
+			var liked = urllist[i].split(",")[2];
 			    
 		        var imgcon = document.createElement('div');
                         var heartcon = document.createElement('div');

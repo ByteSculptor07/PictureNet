@@ -35,9 +35,9 @@ window.onload = function() {
 	    const xhttp = new XMLHttpRequest();
             xhttp.onload = function() {
                 count ++;
-		var urllist = this.responseText.split(";");
-		var loop_count = urllist.length;
-		if (loop_count > 1) {
+		if (";" in this.responseText) {
+		    var urllist = this.responseText.split(";");
+		    var loop_count = urllist.length;
 		    for(var i = 0; i < loop_count; i++) {
 		        var item = urllist[i].split(",")[0];
                         var likes = urllist[i].split(",")[1];

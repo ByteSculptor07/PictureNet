@@ -34,7 +34,7 @@ window.onload = function() {
         if (contentHeight <= scrollTop || firstload) {
 	*/
 	const endOfPage = window.innerHeight + window.pageYOffset >= document.body.offsetHeight;
-	if (endOfPage) {
+	if (endOfPage || firstload) {
 	    alert("i");
             firstload = false;
 	    const xhttp = new XMLHttpRequest();

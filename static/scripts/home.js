@@ -36,9 +36,11 @@ window.onload = function() {
             xhttp.onload = function() {
                 count ++;
 		if (this.responseText.includes(";")) {
+		    alert("a")
 		    var urllist = this.responseText.split(";");
 		    var loop_count = urllist.length;
 		    for(var i = 0; i < loop_count; i++) {
+			alert("b")
 		        var item = urllist[i].split(",")[0];
                         var likes = urllist[i].split(",")[1];
 			var liked = urllist[i].split(",")[2];

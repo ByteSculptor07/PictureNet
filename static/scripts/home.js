@@ -31,6 +31,7 @@ window.onload = function() {
         var offsetHeight = document.getElementById('content').offsetHeight;
         var contentHeight = scrollHeight - offsetHeight;
         if (contentHeight <= scrollTop || firstload) {
+	    alert("i");
             firstload = false;
 	    const xhttp = new XMLHttpRequest();
             xhttp.onload = function() {
@@ -41,7 +42,6 @@ window.onload = function() {
 		    var urllist = this.responseText.split(";");
 		    var loop_count = urllist.length;
 		    for(var i = 0; i < loop_count; i++) {
-			alert("b")
 		        var item = urllist[i].split(",")[0];
                         var likes = urllist[i].split(",")[1];
 			var liked = urllist[i].split(",")[2];

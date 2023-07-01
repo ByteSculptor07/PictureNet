@@ -26,15 +26,12 @@ function heart_click(element) {
 window.onload = function() {
     document.getElementById('content').addEventListener('scroll', addpage);
     function addpage() {
-	/*
         var scrollTop = document.getElementById('content').scrollTop;
         var scrollHeight = document.getElementById('content').scrollHeight;
         var offsetHeight = document.getElementById('content').offsetHeight;
         var contentHeight = scrollHeight - offsetHeight;
+	console.log(contentHeight.toString() + "<=" + scrollTop.toString());
         if (contentHeight <= scrollTop || firstload) {
-	*/
-	const endOfPage = window.innerHeight + window.pageYOffset >= document.body.offsetHeight;
-	if (endOfPage || firstload) {
 	    alert("i");
             firstload = false;
 	    const xhttp = new XMLHttpRequest();

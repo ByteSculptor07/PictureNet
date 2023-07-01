@@ -38,7 +38,6 @@ window.onload = function() {
 		var loop_count = urllist.length;
 		if (loop_count > 1) {
 		    for(var i = 0; i < loop_count; i++) {
-                        count ++;
 		        var item = urllist[i].split(",")[0];
                         var likes = urllist[i].split(",")[1];
 			var liked = urllist[i].split(",")[2];
@@ -78,6 +77,7 @@ window.onload = function() {
             }
             xhttp.open("GET", "getimg/" + count.toString());
             xhttp.send();
+            count ++;
         }
     }
     addpage()

@@ -34,6 +34,7 @@ window.onload = function() {
             firstload = false;
 	    const xhttp = new XMLHttpRequest();
             xhttp.onload = function() {
+                count ++;
 		var urllist = this.responseText.split(";");
 		var loop_count = urllist.length;
 		if (loop_count > 1) {
@@ -77,7 +78,6 @@ window.onload = function() {
             }
             xhttp.open("GET", "getimg/" + count.toString());
             xhttp.send();
-            count ++;
         }
     }
     addpage()

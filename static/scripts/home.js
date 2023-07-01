@@ -30,7 +30,7 @@ window.onload = function() {
         var scrollHeight = document.getElementById('content').scrollHeight;
         var offsetHeight = document.getElementById('content').offsetHeight;
         var contentHeight = scrollHeight - offsetHeight;
-        if (contentHeight - contentHeight / 3 <= scrollTop || firstload) {
+        if (contentHeight <= scrollTop || firstload) {
             firstload = false;
 	    const xhttp = new XMLHttpRequest();
             xhttp.onload = function() {
@@ -38,7 +38,7 @@ window.onload = function() {
 		var loop_count = urllist.length;
 		if (loop_count > 1) {
 		    for(var i = 0; i < loop_count; i++) {
-                        count += 1;
+                        count ++;
 		        var item = urllist[i].split(",")[0];
                         var likes = urllist[i].split(",")[1];
 			var liked = urllist[i].split(",")[2];

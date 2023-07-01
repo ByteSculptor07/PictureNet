@@ -35,7 +35,7 @@ window.onload = function() {
 	    const xhttp = new XMLHttpRequest();
             xhttp.onload = function() {
                 count ++;
-		if (";" in this.responseText) {
+		if (this.responseText.includes(";")) {
 		    var urllist = this.responseText.split(";");
 		    var loop_count = urllist.length;
 		    for(var i = 0; i < loop_count; i++) {

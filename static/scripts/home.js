@@ -30,6 +30,7 @@ window.onload = function() {
         var scrollHeight = document.getElementById('content').scrollHeight;
         var offsetHeight = document.getElementById('content').offsetHeight;
         var contentHeight = scrollHeight - offsetHeight;
+	document.querySelector(".name").innerHTML = contentHeight.toString() + "<=" + scrollTop.toString();
         if (contentHeight - 10 <= scrollTop || firstload) {
             firstload = false;
 	    const xhttp = new XMLHttpRequest();

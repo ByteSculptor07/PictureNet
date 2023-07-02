@@ -5,7 +5,7 @@ function heart_click(element) {
 	var heart = element.firstChild;
 	var counter = element.lastChild;
 	var counter_num = counter.innerHTML;
-    var img_url = element.parentElement.parentElement.parentElement.style.backgroundImage.slice(5, -2);
+        var img_url = element.parentElement.parentElement.parentElement.style.backgroundImage.slice(5, -2);
 	if (heart.className == "ph-bold ph-heart-straight heart") {
 	    heart.className = "ph-fill ph-heart-straight heart";
 	    if (!Number.isNaN(counter_num)) {
@@ -31,8 +31,7 @@ window.onload = function() {
         var scrollHeight = document.getElementById('content').scrollHeight;
         var offsetHeight = document.getElementById('content').offsetHeight;
         var contentHeight = scrollHeight - offsetHeight;
-	document.querySelector(".name").innerHTML = contentHeight.toString() + "<=" + scrollTop.toString();
-	var bottom =  contentHeight - 10 <= scrollTop && contentHeight > oldContentHeight;
+	var bottom =  contentHeight - 10 <= scrollTop;
         if (bottom || firstload) {
             firstload = false;
 	    const xhttp = new XMLHttpRequest();
@@ -74,7 +73,6 @@ window.onload = function() {
                         heartcon.appendChild(heartcen);
                         imgcon.appendChild(heartcon);
             
-                        //imgcon.innerHTML += count;
                         document.getElementById('content').appendChild(imgcon);
 		    }
 	        }

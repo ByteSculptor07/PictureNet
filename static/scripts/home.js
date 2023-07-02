@@ -1,4 +1,5 @@
 var count = 1;
+var oldContentHeight = 0;
 var firstload = true;
 function heart_click(element) {
 	var heart = element.firstChild;
@@ -31,7 +32,8 @@ window.onload = function() {
         var offsetHeight = document.getElementById('content').offsetHeight;
         var contentHeight = scrollHeight - offsetHeight;
 	document.querySelector(".name").innerHTML = contentHeight.toString() + "<=" + scrollTop.toString();
-        if (contentHeight - 10 <= scrollTop || firstload) {
+	var bottom =  contentHeight - 10 <= scrollTop && contentHeight > oldContentHeight;
+        if (bottom || firstload) {
             firstload = false;
 	    const xhttp = new XMLHttpRequest();
             xhttp.onload = function() {

@@ -148,12 +148,3 @@ def unlike():
             return "error: not liked!"
     else:
         return "error: no data!"
-
-@app.route("/search", methods=['POST', 'GET'])
-def upload():
-    if request.method == "GET" and identity.get("u"):
-        return render_template("search.html")
-    elif not identity.get("u"):
-        return redirect(url_for("index"))
-    else:
-        return "post not allowed!"

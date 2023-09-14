@@ -37,7 +37,7 @@ body{
   z-index: 2;
 }
 .content {
-  height: 80%;
+  height: 95vh;
   overflow: auto;
 }
 .img-container {

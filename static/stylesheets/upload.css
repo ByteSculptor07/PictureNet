@@ -24,9 +24,20 @@ body{
 }
 .footer {
   height: 10vh;
+  width: 45vh;
+  left: 27.5vw;
+  @media screen and (orientation:landscape) {
+    width: 15.5vw;
+    left: 41.25vw;
+  }
   display:flex;
   justify-content: space-around;
-  border-top: 2px solid #575757;
+  border-radius: 5vh;
+  border: 2px solid #575757;
+  background: #111111;
+  position: fixed;
+  bottom: 5vh;
+  z-index: 2;
 }
 .content {
   height: 80%;

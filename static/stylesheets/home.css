@@ -30,7 +30,7 @@ body{
   display:flex;
   justify-content: space-around;
   border-radius: 5vh;
-  border-top: 2px solid #575757;
+  border: 2px solid #575757;
   background: #111111;
   position: fixed;
   bottom: 5vh;

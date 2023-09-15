@@ -24,5 +24,5 @@ Follow these simple steps to get started with PictureNet:
 ## Privacy and Security
 Your pictures are stored securely in your own private space, and only a link to it is shared.
 
-
+##
 Happy sharing! 📸

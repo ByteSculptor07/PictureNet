@@ -22,6 +22,7 @@ Follow these simple steps to get started with PictureNet:
 4. **Explore:** Discover amazing pictures from other users and like them.
 
 ## Privacy and Security
-Your pictures are stored securely in your own private space, and only a like to it is shared.
+Your pictures are stored securely in your own private space, and only a link to it is shared.
+
 
 Happy sharing! 📸

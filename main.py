@@ -11,6 +11,8 @@ identity = deta.Base("identity")
 img_info = deta.Base("images")
 images = deta.Drive("images")
 
+api_url = os.getenv('API_URL')
+
 @app.route("/")
 def index():
     if not identity.get("u"):

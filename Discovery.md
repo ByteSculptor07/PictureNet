@@ -2,7 +2,7 @@
 title: "PictureNet"
 tagline: "share your pictures with the world"
 theme_color: "#00ccff"
-git: "<https://github.com/bytesculptor07/PictureNet>"
+git: "<https://github.com/oxoovo/PictureNet>"
 ---
 
 ## PictureNet 📷

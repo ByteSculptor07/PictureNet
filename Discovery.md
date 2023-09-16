@@ -3,7 +3,7 @@ title: "PictureNet"
 app_name: "PictureNet"
 tagline: "Share your pictures with the world"
 theme_color: "#00ccff"
-git: "https://github.com/oxoovo/PictureNet"
+git: "https://github.com/ByteSculptor07/PictureNet"
 ---
 
 ## PictureNet 📷

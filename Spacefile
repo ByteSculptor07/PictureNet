@@ -10,7 +10,10 @@ micros:
     dev: .venv/bin/flask --app main run
     presets:
       env:
-        - name: MEMER
+        - name: MEMER_KEY
           description: paste your Memer-data-key here
+      env:
+        - name: BLACK_HOLE_KEY
+          description: paste your Black Hole-data-key here
     public_routes:
       - "/view/*"

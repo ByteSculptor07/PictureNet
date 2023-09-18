@@ -8,5 +8,9 @@ micros:
     primary: true
     run: gunicorn main:app
     dev: .venv/bin/flask --app main run
+    presets:
+      env:
+        - name: MEMER
+          description: paste your Memer-data-key here
     public_routes:
       - "/view/*"

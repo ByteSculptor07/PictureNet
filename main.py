@@ -7,11 +7,13 @@ import io
 deta = Deta()
 app = Flask(__name__)
 
+memer_key = os.environ.get('MEMER_KEY')
+black_hole_key = os.environ.get('BLACK_HOLE_KEY')
+api_url = os.getenv('API_URL')
+
 identity = deta.Base("identity")
 img_info = deta.Base("images")
 images = deta.Drive("images")
-
-api_url = os.getenv('API_URL')
 
 @app.route("/")
 def index():
@@ -93,6 +95,13 @@ def view(image):
         io.BytesIO(img),
         mimetype=f"image/{image.split('.')[1]}",
     )
+
+@app.route("/viewimgfrom/<app>/<image>", methods=["GET"])
+def view_img_from(app, image):
+    if app == "memer":
+    elif app == "blackhole":
+    else:
+        return "error: app not found"
     
 @app.route("/getimg/<val>", methods=["GET"])
 def test(val):

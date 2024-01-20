@@ -6,6 +6,13 @@ let input = dropArea.querySelector('input');
 let publish_btn = document.getElementById("publish");
 var upload_form = document.getElementById('form');
 var preview_area = document.getElementById('preview');
+var gen_btn = document.getElementById('genBtn');
+var gen_start_btn = document.getElementById('genStartBtn');
+var loader = document.getElementById('loader');
+var prompt_container = document.getElementById('promptContainer');
+var prompt_input = document.getElementById('promptInput');
+var input_container = document.getElementById('inputContainer');
+console.log(genBtn);
 var dropText = document.querySelectorAll(".hide");
 let file;
 let fileURL;
@@ -42,10 +49,15 @@ function displayFile() {
         let fileReader = new FileReader();
         fileReader.onload = () => {
             fileURL = fileReader.result;
-            let imgTag = `<img src="${fileURL}" alt="">`;
-            preview_area.innerHTML = imgTag;
-            dropText.forEach(function(element) {
-                element.style.display = "none";
+            var image = new Image();
+            image.src = fileURL;
+            //let imgTag = `<img src="${fileURL}" alt="">`;
+            preview_area.innerHTML = "";
+   
+              preview_area.appendChild(image)
+              
+              dropText.forEach(function(element) {
+                  element.style.display = "none";
             });
         };
         fileReader.readAsDataURL(file);
@@ -74,6 +86,28 @@ publish_btn.addEventListener("click", function() {
     upload_form.appendChild(field);
     upload_form.submit();
 });
+
+gen_btn.onclick = () => {
+    input_container.style.display = 'flex';
+    preview_area.innerHTML = "";
+    document.getElementById('genHide').style.display = "none";
+        dropText.forEach(function(element) {
+                  element.style.display = "none";
+            });
+};
+
+gen_start_btn.onclick = () => {
+    loader.style.display = "block";
+    const xhttp = new XMLHttpRequest();
+    xhttp.onload = function() {
+        if (this.responseText.includes(",")) {
+            esttime = this.responseText.split(";")[1];
+            dropArea.innerHTML += `<br><span class="gen">estimated time: ${esttime}</span>``;
+        };
+    }
+    xhttp.open("GET", "generateimg/" + promptInput.value);
+    xhhtp.send();
+};
 };
 
 

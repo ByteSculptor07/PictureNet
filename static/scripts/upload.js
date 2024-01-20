@@ -102,11 +102,34 @@ gen_start_btn.onclick = () => {
     xhttp.onload = function() {
         if (this.responseText.includes(",")) {
             esttime = this.responseText.split(";")[1];
-            dropArea.innerHTML += `<br><span class="gen">estimated time: ${esttime}</span>``;
+            res_str = this.responseText.split(";")[0];
+            dropArea.innerHTML += `<br><span class="gen">estimated time:${esttime}</span>`;
+            if (esttime.startsWith(" 1")) {
+                interval = setInterval(getImage, 5000);
+            } else {
+                interval = setInterval(getImage, 10000);
+            }
         };
     }
-    xhttp.open("GET", "generateimg/" + promptInput.value);
-    xhhtp.send();
+    xhttp.open("GET", "generateimg/" + prompt_input.value.replace(" ", "+"));
+    xhttp.send();
+
+    function getImage() {
+        xhttp.onload = function() {
+            if (this.responseText.includes("error")) {
+                //pass
+            } else {
+                result = this.responseText;
+                clearInterval(interval);
+                var image = new Image();
+                image.src = result.split(",")[0];
+                loader.style.display = "none";
+                preview_area.appendChild(image);
+            }
+        }
+        xhttp.open("GET", "getgeneratedimg/" + res_str);
+        xhttp.send();
+    }
 };
 };
 

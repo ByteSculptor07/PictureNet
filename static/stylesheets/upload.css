@@ -75,7 +75,7 @@ body{
 }
 
 .drag-area {
-  height: 35%;
+  height: 35vh;
   border: 3px dashed #575757;
   border-radius: 15px;
   display: flex;
@@ -98,12 +98,6 @@ body{
   color: gray;
   margin: 10px 0 15px 0;
 }
-.drag-area .button {
-  font-size: 20px;
-  font-weight: 500;
-  color: #1683ff;
-  cursor: pointer;
-}
 .drag-area .active {
   border: 2px solid #1683ff;
 }
@@ -114,7 +108,20 @@ body{
 .preview img {
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  object-fit: cover;
+}
+
+.button {
+  font-size: 20px;
+  font-weight: 500;
+  color: #1683ff;
+  cursor: pointer;
+}
+
+.gen {
+  font-size: 20px;
+  font-weight: 500;
+  color: #B3C9E1;
 }
 
 .tag-edit {
@@ -181,4 +188,94 @@ input[type="submit"]:active {
   color: #FFFFFF;
   border-color: #00CCFF;
   background-color: #00CCFF;
+}
+
+.input_container{
+  display: none;
+  width: 500px;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  /*background-color: #00ccff;*/
+  border-radius: 50px;
+  border: 2px solid #575757;
+  height: 60px;
+  padding: 31px 5px 31px 5px;
+}
+.input_container input{
+  padding: 4px;
+  flex-grow: 1;
+  background-color: transparent;
+  outline: none;
+  border: none;
+  margin-right: 8px;
+  color: #ffffff;
+}
+.input_container input::placeholder {
+  color: #575757;
+}
+.input_container button{
+  height: 54px;
+  width: 94px;
+  background-color: #1683ff;
+  color: #ffffff;
+  text-transform: uppercase;
+  border-style: none;
+  border-radius: 50px;
+} 
+
+
+.loader {
+    display: none;
+    position: relative;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background: linear-gradient(#f07e6e, #84cdfa, #5ad1cd);
+    animation: animate 1.2s linear infinite;
+}
+
+@keyframes animate {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.loader span {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: linear-gradient(#f07e6e, #84cdfa, #5ad1cd);
+}
+
+.loader span:nth-child(1) {
+    filter: blur(5px);
+}
+
+.loader span:nth-child(2) {
+    filter: blur(10px);
+}
+
+.loader span:nth-child(3) {
+    filter: blur(25px);
+}
+
+.loader span:nth-child(4) {
+    filter: blur(50px);
+}
+
+.loader:after {
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    right: 2px;
+    bottom: 2px;
+    background: #00000000;
+    border: none;
+    border-radius: 50%;
 }

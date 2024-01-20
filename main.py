@@ -7,8 +7,6 @@ import io
 deta = Deta()
 app = Flask(__name__)
 
-memer_key = os.environ.get('MEMER_KEY')
-black_hole_key = os.environ.get('BLACK_HOLE_KEY')
 api_url = os.getenv('API_URL')
 
 identity = deta.Base("identity")
@@ -95,13 +93,6 @@ def view(image):
         io.BytesIO(img),
         mimetype=f"image/{image.split('.')[1]}",
     )
-
-@app.route("/viewimgfrom/<app>/<image>", methods=["GET"])
-def view_img_from(app, image):
-    if app == "memer":
-    elif app == "blackhole":
-    else:
-        return "error: app not found"
     
 @app.route("/getimg/<val>", methods=["GET"])
 def test(val):
@@ -159,3 +150,13 @@ def unlike():
             return "error: not liked!"
     else:
         return "error: no data!"
+
+@app.route("/generateimg/<query>", methods=["GET"])
+def generate_img(query):
+    r = requests.get(api_url + "generateimg/" + query)
+    return str(r.text)
+
+@app.route("/getgeneratedimg/<str>", methods=["GET"])
+def getgeneratedimg(str):
+    r = requests.get(api_url + "getgeneratedimg/" + str)
+    return str(r.text)

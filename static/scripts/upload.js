@@ -124,7 +124,9 @@ gen_start_btn.onclick = () => {
                 const image = new Image();
             
             image.onload = function() {
-                add_img(image);
+                //add_img(image);
+                file = result.split(",")[0];
+                displayFile()
             };
 
             image.onerror = function() {

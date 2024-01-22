@@ -89,7 +89,7 @@ publish_btn.addEventListener("click", function() {
 
 gen_btn.onclick = () => {
     input_container.style.display = 'flex';
-    preview_area.innerHTML = "";
+    //preview_area.innerHTML = "";
     document.getElementById('genHide').style.display = "none";
         dropText.forEach(function(element) {
                   element.style.display = "none";
@@ -103,7 +103,7 @@ gen_start_btn.onclick = () => {
         if (this.responseText.includes(",")) {
             esttime = this.responseText.split(";")[1];
             res_str = this.responseText.split(";")[0];
-            dropArea.innerHTML += `<br><span class="gen">estimated time:${esttime}</span>`;
+            dropArea.innerHTML += `<br><span class="gen" id="estTimeLabel">estimated time:${esttime}</span>`;
             if (esttime.startsWith(" 1")) {
                 interval = setInterval(getImage, 5000);
             } else {
@@ -121,11 +121,19 @@ gen_start_btn.onclick = () => {
             } else {
                 result = this.responseText;
                 clearInterval(interval);
-                var image = new Image();
-                image.src = result.split(",")[0];
-                loader.style.display = "none";
-                preview_area.appendChild(image);
-            }
+                const image = new Image();
+            
+            image.onload = function() {
+                add_img(image);
+            };
+
+            image.onerror = function() {
+                console.error("Error loading image");
+            };
+
+            image.src = result.split(",")[0];
+            console.log("Setting image source:", image.src);
+        }
         }
         xhttp.open("GET", "getgeneratedimg/" + res_str);
         xhttp.send();
@@ -133,6 +141,13 @@ gen_start_btn.onclick = () => {
 };
 };
 
+function add_img(image) {
+    console.log("Image loaded successfully");
+    clearInterval(interval);
+    loader.style.display = "none";
+    document.getElementById('estTimeLabel').style.display = "none";
+    document.getElementById('preview').appendChild(image);
+};
 
 const tag_list = [];
 function add_tag(element) {

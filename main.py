@@ -156,7 +156,7 @@ def generate_img(query):
     r = requests.get(api_url + "generateimg/" + query)
     return str(r.text)
 
-@app.route("/getgeneratedimg/<str>", methods=["GET"])
-def getgeneratedimg(str):
-    r = requests.get(api_url + "getgeneratedimg/" + str)
+@app.route("/getgeneratedimg/<reqstr>", methods=["GET"])
+def getgeneratedimg(reqstr):
+    r = requests.get(api_url + "getgeneratedimg/" + reqstr)
     return str(r.text)

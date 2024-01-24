@@ -125,7 +125,9 @@ gen_start_btn.onclick = () => {
             
             image.onload = function() {
                 //add_img(image);
-                file = result.split(",")[0];
+                toDataURL(result.split(",")[0];, function(dataURL){
+                    file = dataURL;
+                });
                 displayFile()
             };
 
@@ -142,6 +144,23 @@ gen_start_btn.onclick = () => {
     }
 };
 };
+
+function toDataURL(url, callback){
+    var xhr = new XMLHttpRequest();
+    xhr.open('get', url);
+    xhr.responseType = 'blob';
+    xhr.onload = function(){
+      var fr = new FileReader();
+    
+      fr.onload = function(){
+        callback(this.result);
+      };
+    
+      fr.readAsDataURL(xhr.response); // async call
+    };
+    
+    xhr.send();
+}
 
 function add_img(image) {
     console.log("Image loaded successfully");

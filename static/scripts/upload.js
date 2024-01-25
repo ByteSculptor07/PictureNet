@@ -4,7 +4,6 @@ const dragText = document.querySelector('.hd');
 let button = dropArea.querySelector('.button');
 let input = dropArea.querySelector('input');
 let publish_btn = document.getElementById("publish");
-var upload_form = document.getElementById('form');
 var preview_area = document.getElementById('preview');
 var gen_btn = document.getElementById('genBtn');
 var gen_start_btn = document.getElementById('genStartBtn');
@@ -78,13 +77,7 @@ input.addEventListener('change', function () {
 });
 
 publish_btn.addEventListener("click", function() {
-    var field = document.createElement('input');
-    field.setAttribute("type", "hidden");
-    field.setAttribute("name", "tags");
-    field.setAttribute("value", tag_list.toString());
-    
-    upload_form.appendChild(field);
-    upload_form.submit();
+    submitForm();
 });
 
 gen_btn.onclick = () => {
@@ -103,7 +96,7 @@ gen_start_btn.onclick = () => {
         if (this.responseText.includes(",")) {
             esttime = this.responseText.split(";")[1];
             res_str = this.responseText.split(";")[0];
-            dropArea.innerHTML += `<br><span class="gen" id="estTimeLabel">estimated time:${esttime}</span>`;
+            dropArea.innerHTML += `<span class="gen" id="estTimeLabel"><br>estimated time:${esttime}</span>`;
             if (esttime.startsWith(" 1")) {
                 interval = setInterval(getImage, 5000);
             } else {
@@ -123,20 +116,10 @@ gen_start_btn.onclick = () => {
                 clearInterval(interval);
                 const image = new Image();
             
-            image.onload = function() {
-                //add_img(image);
-                toDataURL(result.split(",")[0];, function(dataURL){
-                    file = dataURL;
+                toDataURL(result.split(",")[0], function(dataURL){
+                    image.src = dataURL;
+                    add_img(image);
                 });
-                displayFile()
-            };
-
-            image.onerror = function() {
-                console.error("Error loading image");
-            };
-
-            image.src = result.split(",")[0];
-            console.log("Setting image source:", image.src);
         }
         }
         xhttp.open("GET", "getgeneratedimg/" + res_str);
@@ -162,12 +145,26 @@ function toDataURL(url, callback){
     xhr.send();
 }
 
+function dataURLtoBlob(dataURL) {
+    var arr = dataURL.split(','), mime = arr[0].match(/:(.*?);/)[1],
+        bstr = atob(arr[1]), n = bstr.length, u8arr = new Uint8Array(n);
+    while (n--) {
+        u8arr[n] = bstr.charCodeAt(n);
+    }
+    return new Blob([u8arr], { type: mime });
+}
+
 function add_img(image) {
     console.log("Image loaded successfully");
     clearInterval(interval);
     loader.style.display = "none";
     document.getElementById('estTimeLabel').style.display = "none";
     document.getElementById('preview').appendChild(image);
+    var blob = dataURLtoBlob(image.src);
+    var file = new File([blob], 'bild.png', { type: blob.type });
+    var dataTransfer = new DataTransfer();
+    dataTransfer.items.add(file);
+    document.getElementById('imgInput').files = dataTransfer.files;
 };
 
 const tag_list = [];
@@ -199,3 +196,13 @@ function focus_tag() {
     input = document.getElementById("tag_input");
     input.focus();
 };
+
+function submitForm() {
+    var field = document.createElement('input');
+    field.setAttribute("type", "hidden");
+    field.setAttribute("name", "tags");
+    field.setAttribute("value", tag_list.toString());
+    
+    document.getElementById('form').appendChild(field);
+    document.getElementById('form').submit();
+}

@@ -104,7 +104,7 @@ gen_start_btn.onclick = () => {
             }
         };
     }
-    xhttp.open("GET", "generateimg/" + prompt_input.value.replace(" ", "+"));
+    xhttp.open("GET", "generateimg/" + prompt_input.value.replaceAll(" ", "+"));
     xhttp.send();
 
     function getImage() {

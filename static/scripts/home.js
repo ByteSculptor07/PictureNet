@@ -49,6 +49,7 @@ window.onload = function() {
 		        var imgcon = document.createElement('div');
                         var heartcon = document.createElement('div');
                         var heartcen = document.createElement('div');
+			var aicon = document.createElement('div');
                         var heartbtn = document.createElement('button');
                         var heartico = document.createElement('i');
                         var heartcou = document.createElement('p');
@@ -57,6 +58,8 @@ window.onload = function() {
                         heartcon.className = 'heart-container';
                         heartcen.className = 'center-div';
                         heartbtn.className = 'heart-button';
+			aicon.className = 'ai-container';
+			aicon.innerHTML = "ai";
 			if (liked == "0") {
                             heartico.className = 'ph-bold ph-heart-straight heart';
 			} else {
@@ -73,6 +76,9 @@ window.onload = function() {
                         heartcen.appendChild(heartbtn);
                         heartcon.appendChild(heartcen);
                         imgcon.appendChild(heartcon);
+			if (prompt != "") {
+			    imgcon.appendChild(aicon);
+			}
             
                         document.getElementById('content').appendChild(imgcon);
 		    }

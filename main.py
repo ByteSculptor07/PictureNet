@@ -68,6 +68,9 @@ def upload():
     else:
         image = request.files.get("uploadedIMG")
         extension = image.filename.split(".")[-1]
+        if not extension:
+            extension = "png"
+
         image_data = image.read()
         image_data_encoded = base64.b64encode(image_data).decode("utf-8")
         item = img_info.put({"ext": extension})

@@ -79,8 +79,9 @@ def upload():
         
         url = f"{request.url_root}view/{id}.{extension}"
         tags = request.form["tags"].split(",")
-        prompt = request.form["prompt"]
-        if not prompt:
+        if "prompt" in request.form:
+            prompt = request.form["prompt"]
+        else:
             prompt = ""
         user = identity.get("u")["user"]
         user_id = identity.get("u")["id"]

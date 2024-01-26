@@ -104,6 +104,12 @@ gen_start_btn.onclick = () => {
             }
         };
     }
+    var field = document.createElement('input');
+    field.setAttribute("type", "hidden");
+    field.setAttribute("name", "prompt");
+    field.setAttribute("value", prompt_input.value);
+    document.getElementById('form').appendChild(field);
+
     xhttp.open("GET", "generateimg/" + prompt_input.value.replaceAll(" ", "+"));
     xhttp.send();
 

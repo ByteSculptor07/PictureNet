@@ -79,9 +79,12 @@ def upload():
         
         url = f"{request.url_root}view/{id}.{extension}"
         tags = request.form["tags"].split(",")
+        prompt = request.form["prompt"]
+        if not prompt:
+            prompt = ""
         user = identity.get("u")["user"]
         user_id = identity.get("u")["id"]
-        obj = {"url": url, "tags": tags, "user": user, "id": user_id}
+        obj = {"url": url, "tags": tags, "user": user, "id": user_id, "prompt": prompt}
         r = requests.post(api_url + "addimg", json=obj)
         if "success" in r.text:
             return redirect(url_for("home"))

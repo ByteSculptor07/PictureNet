@@ -71,6 +71,14 @@ body{
   bottom: 0;
   right: 0;
 }
+.ai-container {
+  border-radius: 3px;
+  width: 2vw;
+  height: 0.5vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
 .center-div {
   width: 6vh;
   margin: 0 auto;

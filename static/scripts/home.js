@@ -43,7 +43,8 @@ window.onload = function() {
 		    for(var i = 0; i < loop_count; i++) {
 		        var item = urllist[i].split(",")[0];
                         var likes = urllist[i].split(",")[1];
-			var liked = urllist[i].split(",")[2];
+			var prompt = urllist[i].split(",")[2];
+			var liked = urllist[i].split(",")[3];
 			    
 		        var imgcon = document.createElement('div');
                         var heartcon = document.createElement('div');

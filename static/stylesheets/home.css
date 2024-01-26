@@ -73,11 +73,12 @@ body{
 }
 .ai-container {
   border-radius: 3px;
-  width: 2vw;
-  height: 0.5vh;
+  background: #00f700;
+  width: 3vw;
   position: absolute;
-  top: 0;
-  left: 0;
+  text-align:center;
+  top: 1vh;
+  left: 1vw;
 }
 .center-div {
   width: 6vh;

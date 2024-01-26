@@ -15,3 +15,6 @@ Welcome to PictureNet! The app allows you to create images wit AI, share your fa
 
 ## Privacy and Security
 Your pictures are stored securely in your own private space, and only a link to them is shared.
+
+## Credits
+Bing Image Creator API from [bingart](https://github.com/dedInc/bingart)
